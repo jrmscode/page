@@ -1,25 +1,17 @@
 import pygame
-from page.player import Player
-from page.enemy import Enemy
+from page.game import GameScene
 
 
 class Engine:
+    """ The main game engine that handles the game loop and rendering. """
 
     def __init__(self,
                  width=320,
                  height=180,
                  title="PAGE"):
 
-        # initialize the game engine and create a player entity
-        self.entities = []
-        self.player = Player(100, 50)
-        self.enemy = Enemy(200, 50)
-        self.entities.append(self.player)
-        self.entities.append(self.enemy)
-
         # pygame setup
         pygame.init()
-
         self.width = width
         self.height = height
 
@@ -28,31 +20,34 @@ class Engine:
         )
 
         pygame.display.set_caption(title)
-
         self.clock = pygame.time.Clock()
         self.running = True
+
+        self.game_scene = GameScene()
+
+
+    def process_input(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.running = False
+
 
     def start(self):
 
         # poll events and update the screen
         while self.running:
 
-            for event in pygame.event.get():
+            # process input events
+            self.process_input()
 
-                if event.type == pygame.QUIT:
-                    self.running = False
+            # update and draw the scene
+            self.game_scene.update()
 
-            # fill the screen with a color (black in this case)
+            # clear the screen
             self.screen.fill((0, 0, 0))
 
-            # update and draw all entities
-            for entity in self.entities:
-                entity.update()
-                entity.draw(self.screen)
-
-            # check for collision between player and enemy
-            if self.player.rect.colliderect(self.enemy.rect):
-                print("Collision detected!")
+            # draw the scene
+            self.game_scene.draw(self.screen)
 
             # update the display
             pygame.display.flip()

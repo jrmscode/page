@@ -3,16 +3,11 @@ from page.entity import Entity
 
 
 class Player(Entity):
+    """ A player entity that can be controlled by the user. """
 
     def __init__(self, x, y):
-        super().__init__(x, y)
+        super().__init__(x, y, color=(255, 255, 255))
 
-
-    def draw(self, screen):
-
-        pygame.draw.rect(
-            screen, (255,255,255), self.rect
-        )
 
     def update(self):
         keys = pygame.key.get_pressed()
