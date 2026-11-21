@@ -9,7 +9,13 @@ class Scene:
         for entity in self.entities:
             entity.update()
 
+        self.check_collisions()
+
 
     def draw(self, screen):
         for entity in self.entities:
             entity.draw(screen)
+
+
+    def check_collisions(self):
+        pass

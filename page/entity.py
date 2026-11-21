@@ -22,6 +22,10 @@ class Entity:
         )
 
 
+    def on_collision(self, other):
+        pass
+
+    
     @property
     def rect(self):
         return pygame.Rect(

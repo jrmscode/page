@@ -13,6 +13,7 @@ class Enemy(Entity):
         pass
 
 
-    def on_collision(self):
+    def on_collision(self, other):
         # change the color of the enemy to green when it collides with the player
+        print("Enemy collided with", type(other).__name__)
         self.color = (0, 255, 0)

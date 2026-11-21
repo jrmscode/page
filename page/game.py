@@ -19,7 +19,9 @@ class GameScene(Scene):
     def update(self):
         super().update()
 
+
+    def check_collisions(self):
         # check for collision between player and enemy
         if self.player.rect.colliderect(self.enemy.rect):
-            print("Collision detected!")
-            self.enemy.on_collision()
+            self.player.on_collision(self.enemy)
+            self.enemy.on_collision(self.player)

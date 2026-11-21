@@ -21,4 +21,6 @@ class Player(Entity):
         if keys[pygame.K_DOWN]:
             self.y += 2
 
-    
+
+    def on_collision(self, other):
+        print("Player collided with", other)
