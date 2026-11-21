@@ -11,9 +11,7 @@ class Player(Entity):
     def draw(self, screen):
 
         pygame.draw.rect(
-            screen,
-            (255,255,255),
-            (self.x, self.y, self.width, self.height)
+            screen, (255,255,255), self.rect
         )
 
     def update(self):

@@ -12,10 +12,10 @@ class Engine:
 
         # initialize the game engine and create a player entity
         self.entities = []
-        player = Player(100, 50)
-        enemy = Enemy(200, 50)
-        self.entities.append(player)
-        self.entities.append(enemy)
+        self.player = Player(100, 50)
+        self.enemy = Enemy(200, 50)
+        self.entities.append(self.player)
+        self.entities.append(self.enemy)
 
         # pygame setup
         pygame.init()
@@ -49,6 +49,10 @@ class Engine:
             for entity in self.entities:
                 entity.update()
                 entity.draw(self.screen)
+
+            # check for collision between player and enemy
+            if self.player.rect.colliderect(self.enemy.rect):
+                print("Collision detected!")
 
             # update the display
             pygame.display.flip()

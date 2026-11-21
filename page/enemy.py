@@ -11,9 +11,7 @@ class Enemy(Entity):
     def draw(self, screen):
 
         pygame.draw.rect(
-            screen,
-            (255,0,0),
-            (self.x, self.y, self.width, self.height)
+            screen, (255,0,0), self.rect
         )
 
     def update(self):

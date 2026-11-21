@@ -1,3 +1,6 @@
+import pygame
+
+
 class Entity:
 
 
@@ -14,3 +17,14 @@ class Entity:
 
     def draw(self, screen):
         pass
+
+
+    @property
+    def rect(self):
+        return pygame.Rect(
+            self.x,
+            self.y,
+            self.width,
+            self.height
+        )
+    
