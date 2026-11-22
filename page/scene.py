@@ -19,3 +19,7 @@ class Scene:
 
     def check_collisions(self):
         pass
+
+
+    def get_camera_target(self):
+        return None

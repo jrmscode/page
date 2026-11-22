@@ -24,7 +24,7 @@ class Engine:
         self.clock = pygame.time.Clock()
         self.running = True
 
-        self.game_scene = GameScene()
+        self.scene = None
         self.camera = Camera()
 
 
@@ -43,20 +43,18 @@ class Engine:
             self.process_input()
 
             # update and draw the scene
-            self.game_scene.update()
+            self.scene.update()
 
             # update the camera to follow the player
-            self.camera.follow(self.game_scene.player)
-            print(
-                f"Player: {self.game_scene.player.x}",
-                f"Enemy: {self.game_scene.enemy.x}"
-            )
+            target = self.scene.get_camera_target()
+            if target is not None:
+                self.camera.follow(target)
 
             # clear the screen
             self.screen.fill((0, 0, 0))
 
             # draw the scene
-            self.game_scene.draw(self.screen, self.camera)
+            self.scene.draw(self.screen, self.camera)
 
             # update the display
             pygame.display.flip()

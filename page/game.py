@@ -25,3 +25,7 @@ class GameScene(Scene):
         if self.player.rect.colliderect(self.enemy.rect):
             self.player.on_collision(self.enemy)
             self.enemy.on_collision(self.player)
+
+
+    def get_camera_target(self):
+        return self.player
