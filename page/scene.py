@@ -12,9 +12,9 @@ class Scene:
         self.check_collisions()
 
 
-    def draw(self, screen):
+    def draw(self, screen, camera):
         for entity in self.entities:
-            entity.draw(screen)
+            entity.draw(screen, camera)
 
 
     def check_collisions(self):

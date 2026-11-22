@@ -16,10 +16,15 @@ class Entity:
         pass
 
 
-    def draw(self, screen):
-        pygame.draw.rect(
-            screen, self.color, self.rect
+    def draw(self, screen, camera):
+        render_rect = pygame.Rect(
+            self.x - camera.x, 
+            self.y - camera.y, 
+            self.width, 
+            self.height
         )
+
+        pygame.draw.rect(screen, self.color, render_rect)
 
 
     def on_collision(self, other):

@@ -23,4 +23,4 @@ class Player(Entity):
 
 
     def on_collision(self, other):
-        print("Player collided with", other)
+        print("Player collided with", type(other).__name__)

@@ -1,5 +1,6 @@
 import pygame
 from page.game import GameScene
+from page.camera import Camera
 
 
 class Engine:
@@ -24,6 +25,7 @@ class Engine:
         self.running = True
 
         self.game_scene = GameScene()
+        self.camera = Camera()
 
 
     def process_input(self):
@@ -43,11 +45,18 @@ class Engine:
             # update and draw the scene
             self.game_scene.update()
 
+            # update the camera to follow the player
+            self.camera.follow(self.game_scene.player)
+            print(
+                f"Player: {self.game_scene.player.x}",
+                f"Enemy: {self.game_scene.enemy.x}"
+            )
+
             # clear the screen
             self.screen.fill((0, 0, 0))
 
             # draw the scene
-            self.game_scene.draw(self.screen)
+            self.game_scene.draw(self.screen, self.camera)
 
             # update the display
             pygame.display.flip()
