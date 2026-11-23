@@ -1,5 +1,6 @@
 import pygame
 from page.entity import Entity
+from page.colors import Colors
 
 
 class Snake(Entity):
@@ -15,7 +16,7 @@ class Snake(Entity):
         super().__init__(
             x,
             y,
-            color=(0, 255, 0)
+            color=Colors.CYBER_CYAN,
         )
 
         self.cell_size = 32

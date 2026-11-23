@@ -1,4 +1,5 @@
 from page.entity import Entity
+from page.colors import Colors
 
 
 class Food(Entity):
@@ -8,7 +9,7 @@ class Food(Entity):
         super().__init__(
             x,
             y,
-            color=(255, 0, 0)
+            color=Colors.CYBER_PINK,
         )
 
         self.active = True

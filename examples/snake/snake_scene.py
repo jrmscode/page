@@ -3,6 +3,7 @@ import random
 from page.scene import Scene
 from .snake import Snake
 from .food import Food
+from page.colors import Colors
 
 
 class SnakeScene(Scene):
@@ -34,16 +35,16 @@ class SnakeScene(Scene):
 
         pygame.draw.rect(
             screen, 
-            (255, 255, 255), 
+            Colors.CYBER_PURPLE, 
             (0 - camera.x, 0 - camera.y, self.WORLD_WIDTH, self.WORLD_HEIGHT), 2)
 
-        for x in range(0, self.WORLD_WIDTH, self.snake.cell_size):
-            pygame.draw.line(
-                screen,
-                (40, 40, 40),
-                (x - camera.x, 0 - camera.y),
-                (x - camera.x, self.WORLD_HEIGHT - camera.y)
-            )
+        # for x in range(0, self.WORLD_WIDTH, self.snake.cell_size):
+        #     pygame.draw.line(
+        #         screen,
+        #         (40, 40, 40),
+        #         (x - camera.x, 0 - camera.y),
+        #         (x - camera.x, self.WORLD_HEIGHT - camera.y)
+        #     )
 
 
     def get_camera_target(self):
