@@ -21,6 +21,7 @@ class Snake(Entity):
         self.cell_size = 32
         self.direction = None
         self.frames = 0
+        self.length = 1
 
 
     def handle_input(self):
@@ -66,3 +67,9 @@ class Snake(Entity):
         if self.frames >= 15:
             self.frames = 0
             self.move()
+
+
+    def on_collision(self, other):
+        # change snake when it collides with food
+        self.length += 1
+        print("Snake updated length to", self.length)
