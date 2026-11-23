@@ -22,8 +22,22 @@ class Snake(Entity):
         self.direction = None
         self.frames = 0
         self.length = 1
+        self.positions = []
 
 
+    def draw(self, screen, camera):
+       for x, y in self.positions[-self.length:]:
+            pygame.draw.rect(
+                screen, self.color,
+                (
+                    x - camera.x,
+                    y - camera.y,
+                    self.width,
+                    self.height
+                )
+            )    
+
+    
     def handle_input(self):
         keys = pygame.key.get_pressed()
 
@@ -56,6 +70,8 @@ class Snake(Entity):
         elif self.direction == self.DOWN:
             self.y += self.cell_size
             print(f"Snake moved down to {self.x}, {self.y}")
+
+        self.positions.append((self.x, self.y))
 
 
     def update(self):

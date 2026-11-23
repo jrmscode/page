@@ -4,7 +4,7 @@ import pygame
 class Entity:
     """ A base class for all entities in the game. """
 
-    def __init__(self, x, y, color=(255, 255, 255), width=32, height=32):
+    def __init__(self, x, y, color=(255, 255, 255), width=28, height=28):
         self.x = x
         self.y = y
         self.color = color
