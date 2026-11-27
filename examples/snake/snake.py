@@ -20,16 +20,22 @@ class Snake(Entity):
         )
 
         self.cell_size = 32
-        self.direction = None
+        self.direction = self.RIGHT
         self.frames = 0
         self.length = 1
-        self.positions = []
+        self.positions = [(x, y)]
+        self.is_dead = False
 
 
     def draw(self, screen, camera):
-       for x, y in self.positions[-self.length:]:
+       for index, (x, y) in enumerate(self.positions[-self.length:]):
+            color = self.color
+
+            if index == len(self.positions[-self.length:]) - 1 and self.is_dead:
+                color = Colors.CYBER_RED_CARMESI
+            
             pygame.draw.rect(
-                screen, self.color,
+                screen, color,
                 (
                     x - camera.x,
                     y - camera.y,
@@ -73,6 +79,7 @@ class Snake(Entity):
             print(f"Snake moved down to {self.x}, {self.y}")
 
         self.positions.append((self.x, self.y))
+        self.positions = self.positions[-self.length:]  # Keep only the last 'length' positions
 
 
     def update(self):

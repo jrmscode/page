@@ -28,6 +28,8 @@ class SnakeScene(Scene):
         
         super().update()
         self.check_world_bounds()
+        self.check_collisions()
+        self.check_self_collision()
 
 
     def draw(self, screen, camera):
@@ -70,3 +72,16 @@ class SnakeScene(Scene):
             random_x = random.randint(0, self.WORLD_WIDTH // self.snake.cell_size - 1) * self.snake.cell_size
             random_y = random.randint(0, self.WORLD_HEIGHT // self.snake.cell_size - 1) * self.snake.cell_size
             self.food.respawn(random_x, random_y)
+
+
+    def check_self_collision(self):
+        # check for collision between snake and itself
+        head = self.snake.positions[-1]
+        body = self.snake.positions[:-1]
+
+        if head in body:
+            print("Game Over! Snake collided with itself.")
+            print(f"head={head}, body={body}")
+            self.snake.is_dead = True
+            self.game_over = True
+    
